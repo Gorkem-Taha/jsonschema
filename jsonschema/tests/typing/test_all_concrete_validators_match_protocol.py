@@ -6,6 +6,7 @@ The assignation is only valid if type checkers recognize each Validator
 implementation as a valid implementer of the protocol.
 """
 
+from jsonschema.exceptions import ErrorTree, ValidationError
 from jsonschema.protocols import Validator
 from jsonschema.validators import (
     Draft3Validator,
@@ -37,3 +38,9 @@ none_var = Draft6Validator  # type: ignore[assignment]
 none_var = Draft7Validator  # type: ignore[assignment]
 none_var = Draft201909Validator  # type: ignore[assignment]
 none_var = Draft202012Validator  # type: ignore[assignment]
+
+
+error_validator: str | None = ValidationError("invalid").validator
+false_schema_error: ValidationError = ErrorTree(
+    [ValidationError("invalid", validator=None)],
+).errors[None]

@@ -38,7 +38,8 @@ raised or returned, depending on which method or function is used.
     .. attribute:: validator
 
         The name of the failed `keyword
-        <https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural>`_.
+        <https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural>`_,
+        or ``None`` when the error was caused by a ``false`` schema.
 
     .. attribute:: validator_value
 
@@ -337,7 +338,8 @@ To summarize, each tree contains child trees that can be accessed by
 indexing the tree to get the corresponding child tree for a given
 index into the instance. Each tree and child has a `ErrorTree.errors`
 attribute, a dict, that maps the failed validation keyword to the
-corresponding validation error.
+corresponding validation error. Errors from ``false`` schemas use ``None`` as
+the key because they are not associated with a validation keyword.
 
 
 best_match and relevance
